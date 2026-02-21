@@ -1,19 +1,17 @@
 "use client";
-
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
 import { FiMail, FiLock, FiEye, FiEyeOff, FiArrowLeft } from "react-icons/fi";
 
 export default function ForgetPassword() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const emailFromQuery = searchParams.get("email") || "";
+
 
   // حالات الصفحة: "email" (الخطوة الأولى) أو "reset" (الخطوة الثانية)
   const [step, setStep] = useState<"email" | "reset">("reset");
-  const [email, setEmail] = useState(emailFromQuery);
+  const [email, setEmail] = useState("");
   const [otp, setOtp] = useState<string>("");
   const [newPassword, setNewPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
@@ -47,12 +45,7 @@ export default function ForgetPassword() {
     }
   }, [countdown]);
 
-  // ملء البريد إذا جاء من query
-  useEffect(() => {
-    if (emailFromQuery) {
-      setEmail(emailFromQuery);
-    }
-  }, [emailFromQuery]);
+
 
   const togglePasswordVisibility = useCallback(
     () => setShowPassword((prev) => !prev),
