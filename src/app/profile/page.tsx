@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Navbar from "./components/Navbar";
+import { TbBook, TbPlus } from "react-icons/tb";
 
 type ProfileType = {
   displayName?: string;
@@ -57,10 +58,11 @@ export default function Profile() {
             } catch (error: unknown) {
               if (axios.isAxiosError(error)) {
                 const err = error.response?.data?.message;
-                if (err === "Token Expired") {
-                  localStorage.clear();
-                  router.push("/");
-                } else if (err === "Token Blacklisted") {
+                if (
+                  err === "Token Expired" ||
+                  err === "Token Blacklisted" ||
+                  err === "User not found"
+                ) {
                   localStorage.clear();
                   router.push("/");
                 }
@@ -80,37 +82,95 @@ export default function Profile() {
 
   if (errorMessage) return <p style={{ color: "red" }}>{errorMessage}</p>;
 
-  // const listCard = [
-  //   {
-  //     title: "كورسات",
-  //     value: "هنا يوجد جميع الكورسات التي نقدمها",
-  //   },
-  //   {
-  //     title: "الدين",
-  //     value: "هنا يوجد جميع الدورات الدينية التي نقدمها",
-  //   },
-  // ];
   return (
-    <div className="min-h-screen dark:bg-gray-900 text-white">
-      <Navbar displayName={profile.displayName} userName={profile.userName} />
-      {/* <div className="flex flex-wrap gap-5 p-7">
-        {listCard.map((item, index) => (
-          <div key={index} className="border p-5 ">
-            <h2 className="text-xl font-bold">{item.title}</h2>
-            <p>{item.value}</p>
-          </div>
-        ))}
-      </div> */}
+    <div className="min-h-screen bg-linear-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+      <Navbar data={profile} />
 
-      <div className="flex flex-col items-center justify-center gap-5 mt-10">
-        <span>لسه شغال علي الموقع مخلصتش بنسبه 100%</span>
-        <span>لو عندك اي اقتراحات او اسائله او مشكلة كلمني</span>
-        <a
-          href="https://wa.me/201093586806"
-          className="text-blue-500 border border-blue-500 p-2 rounded"
-        >
-          تواصل معي
-        </a>
+      {/* قسم البطاقات */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h2 className="text-3xl font-bold mb-8 text-white flex items-center gap-2">
+          <span className="w-1 h-8 bg-indigo-500 rounded-full"></span>
+          ابدأ رحلتك التعليمية
+        </h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* بطاقة الكورسات */}
+          <div
+            className="group bg-gray-800/40 backdrop-blur-sm rounded-2xl border border-gray-700/50 p-6 hover:shadow-xl hover:shadow-indigo-500/20 transition-all cursor-pointer hover:border-indigo-500/50 hover:-translate-y-1"
+          >
+            <div className="w-12 h-12 bg-indigo-600/20 rounded-xl flex items-center justify-center mb-4 group-hover:bg-indigo-600/30 transition-colors">
+              <TbBook className="w-6 h-6 text-indigo-400" />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors">
+              الكورسات
+            </h3>
+            <p className="text-gray-400 mb-4 leading-relaxed">
+              استعرض جميع الكورسات المتاحة في مختلف المجالات وابدأ التعلم خطوة
+              بخطوة
+            </p>
+            <span className="text-indigo-400 text-sm font-medium flex items-center gap-1">
+              تصفح الكورسات
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </span>
+          </div>
+
+          {/* بطاقة الدين الإسلامي */}
+          <div
+            className="group bg-gray-800/40 backdrop-blur-sm rounded-2xl border border-gray-700/50 p-6 hover:shadow-xl hover:shadow-emerald-500/20 transition-all cursor-pointer hover:border-emerald-500/50 hover:-translate-y-1"
+          >
+            <div className="w-12 h-12 bg-emerald-600/20 rounded-xl flex items-center justify-center mb-4 group-hover:bg-emerald-600/30 transition-colors">
+              <TbBook className="w-6 h-6 text-emerald-400" />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+              الدين الإسلامي
+            </h3>
+            <p className="text-gray-400 mb-4 leading-relaxed">
+              دروس ومقالات عن الإسلام وتعاليمه السمحة، لفهم أعمق للدين الحنيف
+            </p>
+            <span className="text-emerald-400 text-sm font-medium flex items-center gap-1">
+              استكشف المحتوى
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </span>
+          </div>
+
+          {/* بطاقة قابلة للإضافة لاحقاً */}
+          <div className="group bg-gray-800/40 backdrop-blur-sm rounded-2xl border border-gray-700/50 p-6 hover:shadow-xl hover:shadow-purple-500/20 transition-all cursor-not-allowed opacity-60">
+            <div className="w-12 h-12 bg-purple-600/20 rounded-xl flex items-center justify-center mb-4">
+              <TbPlus className="w-6 h-6 text-purple-400" />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-2">قريباً</h3>
+            <p className="text-gray-400 mb-4 leading-relaxed">
+              محتوى جديد قيد الإعداد، تابعونا قريباً
+            </p>
+            <span className="text-purple-400 text-sm font-medium">
+              قيد التطوير
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -8,9 +8,8 @@ import { FiMail, FiLock, FiEye, FiEyeOff, FiArrowLeft } from "react-icons/fi";
 export default function ForgetPassword() {
   const router = useRouter();
 
-
   // حالات الصفحة: "email" (الخطوة الأولى) أو "reset" (الخطوة الثانية)
-  const [step, setStep] = useState<"email" | "reset">("reset");
+  const [step, setStep] = useState<"email" | "reset">("email");
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState<string>("");
   const [newPassword, setNewPassword] = useState<string>("");
@@ -44,8 +43,6 @@ export default function ForgetPassword() {
       return () => clearTimeout(timer);
     }
   }, [countdown]);
-
-
 
   const togglePasswordVisibility = useCallback(
     () => setShowPassword((prev) => !prev),
