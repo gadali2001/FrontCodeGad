@@ -9,11 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-<<<<<<< HEAD
     "axios": "^1.13.6",
-=======
-    "axios": "^1.13.5",
->>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
