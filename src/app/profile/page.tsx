@@ -5,8 +5,11 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import Navbar from "./components/Navbar";
 import { TbBook, TbPlus } from "react-icons/tb";
+<<<<<<< HEAD
 import IsBanned from "@/IsBanned";
 import Link from "next/link";
+=======
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
 
 type ProfileType = {
   displayName?: string;
@@ -23,8 +26,13 @@ export default function Profile() {
     email: "",
     role: "",
   });
+<<<<<<< HEAD
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [isBanned, setIsBanned] = useState<boolean>(false); // حالة الحظر
+=======
+
+  const [errorMessage, setErrorMessage] = useState<string>("");
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -48,10 +56,13 @@ export default function Profile() {
           } else if (err === "Token Blacklisted") {
             localStorage.clear();
             router.push("/");
+<<<<<<< HEAD
           } else if (err === "User is banned") {
             // المستخدم محظور
             // localStorage.clear(); // اختياري: مسح التوكنات
             setIsBanned(true); // تفعيل عرض مكون الحظر
+=======
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
           } else if (err === "Token Expired") {
             try {
               const res = await axios.post(
@@ -61,8 +72,11 @@ export default function Profile() {
                 },
               );
               localStorage.setItem("accessToken", res.data.accessToken);
+<<<<<<< HEAD
               // بعد تجديد التوكن، نعيد محاولة جلب البيانات
               fetchProfile();
+=======
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
             } catch (error: unknown) {
               if (axios.isAxiosError(error)) {
                 const err = error.response?.data?.message;
@@ -88,6 +102,7 @@ export default function Profile() {
     fetchProfile();
   }, [router]);
 
+<<<<<<< HEAD
   // عرض خطأ عام إن وجد
   if (errorMessage) return <p style={{ color: "red" }}>{errorMessage}</p>;
 
@@ -97,11 +112,19 @@ export default function Profile() {
   }
 
   // المحتوى العادي (غير المحظور)
+=======
+  if (errorMessage) return <p style={{ color: "red" }}>{errorMessage}</p>;
+
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
   return (
     <div className="min-h-screen bg-linear-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
       <Navbar data={profile} />
 
+<<<<<<< HEAD
       {/* قسم البطاقات ... يبقى كما هو */}
+=======
+      {/* قسم البطاقات */}
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h2 className="text-3xl font-bold mb-8 text-white flex items-center gap-2">
           <span className="w-1 h-8 bg-indigo-500 rounded-full"></span>
@@ -110,7 +133,13 @@ export default function Profile() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* بطاقة الكورسات */}
+<<<<<<< HEAD
           <Link href="/profile/Courses" className="group bg-gray-800/40 backdrop-blur-sm rounded-2xl border border-gray-700/50 p-6 hover:shadow-xl hover:shadow-indigo-500/20 transition-all cursor-pointer hover:border-indigo-500/50 hover:-translate-y-1">
+=======
+          <div
+            className="group bg-gray-800/40 backdrop-blur-sm rounded-2xl border border-gray-700/50 p-6 hover:shadow-xl hover:shadow-indigo-500/20 transition-all cursor-pointer hover:border-indigo-500/50 hover:-translate-y-1"
+          >
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
             <div className="w-12 h-12 bg-indigo-600/20 rounded-xl flex items-center justify-center mb-4 group-hover:bg-indigo-600/30 transition-colors">
               <TbBook className="w-6 h-6 text-indigo-400" />
             </div>
@@ -137,10 +166,19 @@ export default function Profile() {
                 />
               </svg>
             </span>
+<<<<<<< HEAD
           </Link>
 
           {/* بطاقة الدين الإسلامي */}
           <div className="group bg-gray-800/40 backdrop-blur-sm rounded-2xl border border-gray-700/50 p-6 hover:shadow-xl hover:shadow-emerald-500/20 transition-all cursor-pointer hover:border-emerald-500/50 hover:-translate-y-1">
+=======
+          </div>
+
+          {/* بطاقة الدين الإسلامي */}
+          <div
+            className="group bg-gray-800/40 backdrop-blur-sm rounded-2xl border border-gray-700/50 p-6 hover:shadow-xl hover:shadow-emerald-500/20 transition-all cursor-pointer hover:border-emerald-500/50 hover:-translate-y-1"
+          >
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
             <div className="w-12 h-12 bg-emerald-600/20 rounded-xl flex items-center justify-center mb-4 group-hover:bg-emerald-600/30 transition-colors">
               <TbBook className="w-6 h-6 text-emerald-400" />
             </div>

@@ -4,7 +4,10 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { TbLogout, TbSettings, TbUserCircle, TbEdit } from "react-icons/tb";
 import { HiMenu, HiX } from "react-icons/hi";
+<<<<<<< HEAD
 import Link from "next/link";
+=======
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
 
 export default function Navbar({
   data,
@@ -80,6 +83,7 @@ export default function Navbar({
             {/* الأزرار للشاشات المتوسطة والكبيرة */}
             <div className="hidden md:flex items-center gap-2">
               {data.role === "admin" && (
+<<<<<<< HEAD
                 <Link
                   href="/profile/ListUsers"
                   className="group flex items-center gap-2 px-4 py-2 bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 rounded-xl transition-all border border-indigo-500/30"
@@ -87,6 +91,16 @@ export default function Navbar({
                   <TbSettings className="text-lg group-hover:rotate-90 transition-transform duration-300" />
                   <span>المستخدم</span>
                 </Link>
+=======
+                <button
+                  type="button"
+                  className="group flex items-center gap-2 px-4 py-2 bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 rounded-xl transition-all border border-indigo-500/30"
+                  onClick={() => router.push("/profile/ListUsers")}
+                >
+                  <TbSettings className="text-lg group-hover:rotate-90 transition-transform duration-300" />
+                  <span>المستخدم</span>
+                </button>
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
               )}
               <button
                 type="button"

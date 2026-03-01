@@ -1,10 +1,17 @@
 "use client";
 
 import axios from "axios";
+<<<<<<< HEAD
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
   TbSearch,
+=======
+import { useEffect, useState } from "react";
+import {
+  TbSearch,
+  TbFilter,
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
   TbEye,
   TbX,
   TbCheck,
@@ -46,11 +53,16 @@ interface Filters {
   banned: string;
   deleted: string;
   gender: string;
+<<<<<<< HEAD
   city: string;
 }
 
 import { countries } from "@/countries";
 
+=======
+}
+
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
 export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
@@ -63,12 +75,19 @@ export default function UsersPage() {
     banned: "all",
     deleted: "all",
     gender: "all",
+<<<<<<< HEAD
     city: "all",
   });
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [showFilters, setShowFilters] = useState(false);
 
   // جلب المستخدمين
+=======
+  });
+  const [showFilters, setShowFilters] = useState(false);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -81,9 +100,14 @@ export default function UsersPage() {
             },
           },
         );
+<<<<<<< HEAD
         const usersData = response.data.users;
         setUsers(usersData);
         setFilteredUsers(usersData);
+=======
+        setUsers(response.data.users);
+        setFilteredUsers(response.data.users);
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
       } catch (err) {
         setError("فشل تحميل البيانات");
         console.error(err);
@@ -94,7 +118,10 @@ export default function UsersPage() {
     fetchUsers();
   }, []);
 
+<<<<<<< HEAD
   // تطبيق الفلاتر
+=======
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
   useEffect(() => {
     let result = users;
     if (filters.search) {
@@ -124,9 +151,12 @@ export default function UsersPage() {
     if (filters.gender !== "all") {
       result = result.filter((u) => u.gender === filters.gender);
     }
+<<<<<<< HEAD
     if (filters.city !== "all") {
       result = result.filter((u) => u.city === filters.city);
     }
+=======
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
     setFilteredUsers(result);
   }, [filters, users]);
 
@@ -145,7 +175,10 @@ export default function UsersPage() {
       banned: "all",
       deleted: "all",
       gender: "all",
+<<<<<<< HEAD
       city: "all",
+=======
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
     });
   };
 
@@ -165,6 +198,7 @@ export default function UsersPage() {
     }
   };
 
+<<<<<<< HEAD
   // دالة حظر/إلغاء حظر المستخدم
   const handleBanToggle = async (user: User) => {
     const action = user.isBanned ? "إلغاء حظر" : "حظر";
@@ -204,6 +238,8 @@ export default function UsersPage() {
     }
   };
 
+=======
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
   if (loading)
     return (
       <div className="flex justify-center items-center h-64">
@@ -232,6 +268,7 @@ export default function UsersPage() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+<<<<<<< HEAD
           <div className="flex items-center gap-3 w-full sm:w-auto justify-between">
             <h1 className="text-2xl md:text-3xl font-bold text-white flex items-center gap-2">
               <TbUserCircle className="text-indigo-400 text-3xl" />
@@ -268,23 +305,42 @@ export default function UsersPage() {
             <TbUserCircle className="text-lg " />
             Profile
           </Link>
+=======
+          <h1 className="text-2xl md:text-3xl font-bold text-white flex items-center gap-2">
+            <TbUserCircle className="text-indigo-400 text-3xl" />
+            إدارة المستخدمين
+          </h1>
+          <button
+            onClick={() => setShowFilters(!showFilters)}
+            className="flex items-center gap-2 px-4 py-2.5 bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 rounded-xl hover:bg-indigo-600/30 transition-all backdrop-blur-sm sm:hidden w-full sm:w-auto justify-center"
+          >
+            <TbFilter className="text-lg" />
+            {showFilters ? "إخفاء الفلترة" : "إظهار الفلترة"}
+          </button>
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
         </div>
 
         {/* Search & Filters */}
         <div className="mb-6 space-y-3">
           <div className="relative">
+<<<<<<< HEAD
             <label htmlFor="user-search" className="sr-only">
               بحث
             </label>
             <TbSearch className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg" />
             <input
               id="user-search"
+=======
+            <TbSearch className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg" />
+            <input
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
               type="text"
               name="search"
               value={filters.search}
               onChange={handleFilterChange}
               placeholder="بحث بالاسم أو البريد الإلكتروني..."
               className="w-full pr-12 pl-4 py-3 bg-gray-800/50 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all backdrop-blur-sm text-sm md:text-base"
+<<<<<<< HEAD
               aria-label="بحث بالمستخدمين"
             />
           </div>
@@ -370,6 +426,79 @@ export default function UsersPage() {
                 <span className="hidden sm:inline">إعادة تعيين</span>
               </button>
             </div>
+=======
+            />
+          </div>
+
+          {/* Filters panel */}
+          <div
+            className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 transition-all ${
+              showFilters ? "grid" : "hidden sm:grid"
+            }`}
+          >
+            <select
+              name="role"
+              value={filters.role}
+              onChange={handleFilterChange}
+              className="bg-gray-800/50 border border-gray-700 rounded-xl px-3 py-2.5 text-sm md:text-base text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all backdrop-blur-sm"
+            >
+              <option value="all">كل الأدوار</option>
+              <option value="user">مستخدم</option>
+              <option value="admin">مدير</option>
+              <option value="moderator">مشرف</option>
+            </select>
+
+            <select
+              name="verified"
+              value={filters.verified}
+              onChange={handleFilterChange}
+              className="bg-gray-800/50 border border-gray-700 rounded-xl px-3 py-2.5 text-sm md:text-base text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all backdrop-blur-sm"
+            >
+              <option value="all">كل حالات التحقق</option>
+              <option value="true">بريد مؤكد</option>
+              <option value="false">بريد غير مؤكد</option>
+            </select>
+
+            <select
+              name="banned"
+              value={filters.banned}
+              onChange={handleFilterChange}
+              className="bg-gray-800/50 border border-gray-700 rounded-xl px-3 py-2.5 text-sm md:text-base text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all backdrop-blur-sm"
+            >
+              <option value="all">كل حالات الحظر</option>
+              <option value="true">محظور</option>
+              <option value="false">غير محظور</option>
+            </select>
+
+            <select
+              name="deleted"
+              value={filters.deleted}
+              onChange={handleFilterChange}
+              className="bg-gray-800/50 border border-gray-700 rounded-xl px-3 py-2.5 text-sm md:text-base text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all backdrop-blur-sm"
+            >
+              <option value="all">كل حالات الحذف</option>
+              <option value="true">محذوف</option>
+              <option value="false">غير محذوف</option>
+            </select>
+
+            <select
+              name="gender"
+              value={filters.gender}
+              onChange={handleFilterChange}
+              className="bg-gray-800/50 border border-gray-700 rounded-xl px-3 py-2.5 text-sm md:text-base text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all backdrop-blur-sm"
+            >
+              <option value="all">كل الجنسين</option>
+              <option value="male">ذكر</option>
+              <option value="female">أنثى</option>
+            </select>
+
+            <button
+              onClick={resetFilters}
+              className="px-3 py-2.5 bg-gray-700/50 hover:bg-gray-600/50 rounded-xl transition-all flex items-center justify-center gap-2 text-white text-sm md:text-base border border-gray-600 backdrop-blur-sm"
+            >
+              <TbX /> إعادة تعيين
+            </button>
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
           </div>
         </div>
 
@@ -381,7 +510,11 @@ export default function UsersPage() {
               {users.length}
             </span>
           </span>
+<<<<<<< HEAD
           <span className="w-1 h-1 bg-gray-600 rounded-full" />
+=======
+          <span className="w-1 h-1 bg-gray-600 rounded-full"></span>
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
           <span>
             المعروض:{" "}
             <span className="text-indigo-300 font-semibold">
@@ -390,7 +523,11 @@ export default function UsersPage() {
           </span>
         </div>
 
+<<<<<<< HEAD
         {/* Responsive Cards (Mobile) */}
+=======
+        {/* Responsive Table / Cards */}
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
         <div className="lg:hidden space-y-3">
           {filteredUsers.length === 0 ? (
             <div className="text-center text-gray-500 py-12 bg-gray-800/30 rounded-xl backdrop-blur-sm">
@@ -433,12 +570,16 @@ export default function UsersPage() {
 
                 <div className="grid grid-cols-2 gap-2 text-sm">
                   <div className="text-gray-400">البريد:</div>
+<<<<<<< HEAD
                   <div className="text-white truncate max-w-[220px]">
                     {user.email}
                   </div>
 
                   <div className="text-gray-400">المحافظة:</div>
                   <div className="text-white truncate">{user.city || "—"}</div>
+=======
+                  <div className="text-white truncate">{user.email}</div>
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
 
                   <div className="text-gray-400">بريد مؤكد:</div>
                   <div className="flex items-center gap-1">
@@ -465,7 +606,11 @@ export default function UsersPage() {
                     ) : (
                       <>
                         <TbCheck className="text-emerald-400" />{" "}
+<<<<<<< HEAD
                         <span className="text-white">غير محظور</span>
+=======
+                        <span className="text-white">نشط</span>
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
                       </>
                     )}
                   </div>
@@ -486,6 +631,7 @@ export default function UsersPage() {
                   </div>
                 </div>
 
+<<<<<<< HEAD
                 <div className="flex flex-col sm:flex-row sm:justify-end gap-2">
                   {user.role !== "admin" && (
                     <button
@@ -510,6 +656,15 @@ export default function UsersPage() {
                   >
                     <TbEye className="text-base" />
                     <span className="hidden sm:inline">عرض</span>
+=======
+                <div className="flex justify-end">
+                  <button
+                    onClick={() => setSelectedUser(user)}
+                    className="p-2 bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 rounded-lg transition-all inline-flex items-center gap-2 border border-indigo-500/30 text-sm"
+                  >
+                    <TbEye className="text-base" />
+                    عرض التفاصيل
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
                   </button>
                 </div>
               </div>
@@ -519,20 +674,32 @@ export default function UsersPage() {
 
         {/* Desktop Table */}
         <div className="hidden lg:block overflow-x-auto bg-gray-800/40 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-700/50">
+<<<<<<< HEAD
           <table className="w-full min-w-[900px] table-fixed">
             <thead className="bg-gray-900/60">
               <tr>
                 <th className="px-5 py-4 text-right text-gray-300 font-medium w-12">
+=======
+          <table className="w-full">
+            <thead className="bg-gray-900/60">
+              <tr>
+                <th className="px-5 py-4 text-right text-gray-300 font-medium">
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
                   #
                 </th>
                 <th className="px-5 py-4 text-right text-gray-300 font-medium">
                   اسم المستخدم
                 </th>
+<<<<<<< HEAD
                 <th className="px-5 py-4 text-right text-gray-300 font-medium min-w-[220px]">
                   البريد الإلكتروني
                 </th>
                 <th className="px-5 py-4 text-right text-gray-300 font-medium">
                   المحافظة
+=======
+                <th className="px-5 py-4 text-right text-gray-300 font-medium">
+                  البريد الإلكتروني
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
                 </th>
                 <th className="px-5 py-4 text-right text-gray-300 font-medium">
                   الدور
@@ -555,7 +722,11 @@ export default function UsersPage() {
               {filteredUsers.length === 0 ? (
                 <tr>
                   <td
+<<<<<<< HEAD
                     colSpan={9}
+=======
+                    colSpan={8}
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
                     className="px-5 py-12 text-center text-gray-500"
                   >
                     لا يوجد مستخدمون مطابقون
@@ -578,12 +749,16 @@ export default function UsersPage() {
                         </div>
                       )}
                     </td>
+<<<<<<< HEAD
                     <td className="px-5 py-4 text-gray-300 truncate max-w-[260px]">
                       {user.email}
                     </td>
                     <td className="px-5 py-4 text-gray-300">
                       {user.city || "—"}
                     </td>
+=======
+                    <td className="px-5 py-4 text-gray-300">{user.email}</td>
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
                     <td className="px-5 py-4">
                       <span
                         className={`px-3 py-1.5 rounded-full text-xs font-medium inline-flex items-center gap-1.5 ${
@@ -622,7 +797,11 @@ export default function UsersPage() {
                           <TbCheck className="text-lg text-emerald-400" />
                         )}
                         <span className="text-xs text-white">
+<<<<<<< HEAD
                           {user.isBanned ? "محظور" : "غير محظور"}
+=======
+                          {user.isBanned ? "محظور" : "نشط"}
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
                         </span>
                       </span>
                     </td>
@@ -639,6 +818,7 @@ export default function UsersPage() {
                       </span>
                     </td>
                     <td className="px-5 py-4 text-center">
+<<<<<<< HEAD
                       <div className="flex items-center justify-center gap-2 flex-wrap">
                         {user.role !== "admin" && (
                           <button
@@ -666,6 +846,15 @@ export default function UsersPage() {
                           <span className="hidden xl:inline text-sm">عرض</span>
                         </button>
                       </div>
+=======
+                      <button
+                        onClick={() => setSelectedUser(user)}
+                        className="p-2.5 bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 rounded-xl transition-all inline-flex items-center gap-2 border border-indigo-500/30"
+                      >
+                        <TbEye className="text-lg" />
+                        <span className="text-sm">عرض</span>
+                      </button>
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
                     </td>
                   </tr>
                 ))
@@ -681,7 +870,11 @@ export default function UsersPage() {
             onClick={() => setSelectedUser(null)}
           >
             <div
+<<<<<<< HEAD
               className="bg-gray-800/90 backdrop-blur-xl rounded-2xl w-full sm:max-w-2xl max-h-[95vh] overflow-y-auto p-4 md:p-6 shadow-2xl border border-gray-700"
+=======
+              className="bg-gray-800/90 backdrop-blur-xl rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-4 md:p-6 shadow-2xl border border-gray-700"
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-start mb-4 md:mb-6">
@@ -708,7 +901,10 @@ export default function UsersPage() {
                       {selectedUser.displayName || "—"}
                     </p>
                   </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
                   <div>
                     <label className="text-xs md:text-sm text-gray-400 block mb-1">
                       اسم المستخدم
@@ -717,43 +913,71 @@ export default function UsersPage() {
                       @{selectedUser.userName}
                     </p>
                   </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
                   <div>
                     <label className="text-xs md:text-sm text-gray-400 block mb-1">
                       البريد الإلكتروني
                     </label>
                     <p className="text-white text-sm md:text-base bg-gray-700/30 p-2 md:p-3 rounded-xl border border-gray-600/50 flex items-center gap-2 break-all">
+<<<<<<< HEAD
                       <TbMail className="text-indigo-400" />{" "}
                       <span>{selectedUser.email}</span>
                     </p>
                   </div>
 
+=======
+                      <TbMail className="text-indigo-400" />
+                      <span>{selectedUser.email}</span>
+                    </p>
+                  </div>
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
                   <div>
                     <label className="text-xs md:text-sm text-gray-400 block mb-1">
                       رقم الهاتف
                     </label>
                     <p className="text-white text-sm md:text-base bg-gray-700/30 p-2 md:p-3 rounded-xl border border-gray-600/50 flex items-center gap-2">
+<<<<<<< HEAD
                       <TbPhone className="text-indigo-400" />{" "}
                       {selectedUser.phone || "—"}
                     </p>
                   </div>
 
+=======
+                      <TbPhone className="text-indigo-400" />
+                      {selectedUser.phone || "—"}
+                    </p>
+                  </div>
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
                   <div>
                     <label className="text-xs md:text-sm text-gray-400 block mb-1">
                       تاريخ الميلاد
                     </label>
                     <p className="text-white text-sm md:text-base bg-gray-700/30 p-2 md:p-3 rounded-xl border border-gray-600/50 flex items-center gap-2">
+<<<<<<< HEAD
                       <TbCalendar className="text-indigo-400" />{" "}
                       {formatDate(selectedUser.dateOfBirth)}
                     </p>
                   </div>
 
+=======
+                      <TbCalendar className="text-indigo-400" />
+                      {formatDate(selectedUser.dateOfBirth)}
+                    </p>
+                  </div>
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
                   <div>
                     <label className="text-xs md:text-sm text-gray-400 block mb-1">
                       الجنس
                     </label>
                     <p className="text-white text-sm md:text-base bg-gray-700/30 p-2 md:p-3 rounded-xl border border-gray-600/50 flex items-center gap-2">
+<<<<<<< HEAD
                       <TbGenderBigender className="text-indigo-400" />{" "}
+=======
+                      <TbGenderBigender className="text-indigo-400" />
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
                       {selectedUser.gender === "male"
                         ? "ذكر"
                         : selectedUser.gender === "female"
@@ -773,7 +997,17 @@ export default function UsersPage() {
                     </label>
                     <p className="text-white text-sm md:text-base bg-gray-700/30 p-2 md:p-3 rounded-xl border border-gray-600/50">
                       <span
+<<<<<<< HEAD
                         className={`px-3 py-1.5 rounded-full text-xs md:text-sm font-medium inline-flex items-center gap-2 ${selectedUser.role === "admin" ? "bg-red-500/20 text-red-300" : selectedUser.role === "moderator" ? "bg-amber-500/20 text-amber-300" : "bg-emerald-500/20 text-emerald-300"}`}
+=======
+                        className={`px-3 py-1.5 rounded-full text-xs md:text-sm font-medium inline-flex items-center gap-2 ${
+                          selectedUser.role === "admin"
+                            ? "bg-red-500/20 text-red-300"
+                            : selectedUser.role === "moderator"
+                              ? "bg-amber-500/20 text-amber-300"
+                              : "bg-emerald-500/20 text-emerald-300"
+                        }`}
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
                       >
                         {getRoleIcon(selectedUser.role)}
                         {selectedUser.role === "admin"
@@ -784,6 +1018,7 @@ export default function UsersPage() {
                       </span>
                     </p>
                   </div>
+<<<<<<< HEAD
 
                   <div>
                     <label className="text-xs md:text-sm text-gray-400 block mb-1">
@@ -805,6 +1040,18 @@ export default function UsersPage() {
                     </p>
                   </div>
 
+=======
+                  <div>
+                    <label className="text-xs md:text-sm text-gray-400 block mb-1">
+                      العنوان
+                    </label>
+                    <p className="text-white text-sm md:text-base bg-gray-700/30 p-2 md:p-3 rounded-xl border border-gray-600/50 flex items-center gap-2 flex-wrap">
+                      <TbMapPin className="text-indigo-400" />
+                      {selectedUser.country || ""} {selectedUser.city || ""}{" "}
+                      {selectedUser.region || ""}
+                    </p>
+                  </div>
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
                   <div>
                     <label className="text-xs md:text-sm text-gray-400 block mb-1">
                       حالة البريد
@@ -823,7 +1070,10 @@ export default function UsersPage() {
                       )}
                     </p>
                   </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
                   <div>
                     <label className="text-xs md:text-sm text-gray-400 block mb-1">
                       الحظر
@@ -842,7 +1092,10 @@ export default function UsersPage() {
                       )}
                     </p>
                   </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> c572f96adc0eef12cfb0ceb6e3edce3689188a6a
                   <div>
                     <label className="text-xs md:text-sm text-gray-400 block mb-1">
                       الحذف
